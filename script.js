@@ -1,9 +1,4 @@
-// import ao from 'ao.js'
 import { message, result, spawn, createDataItemSigner } from "@permaweb/aoconnect";
-import { ConnectButton, useActiveAddress } from "arweave-wallet-kit";
-
-const DEFAULT_MODULE = "SBNb1qPQ1TDwpD_mboxm2YllmMLXpWw4U8P9Ff8W9vk";
-const DEFAULT_SCHEDULER = "_GQ33BkPtZrqxA84vM8Zk-N2aO0toNNu_C-l-rawrBA";
 
 const displayContainer = document.getElementById('contentDiv');
 const pidSelect = document.getElementById('pidSelect');
@@ -59,9 +54,7 @@ const queryPids = async () => {
     const headers = {
         'Content-Type': 'application/json',
     };
-
     let nextCursor = null;
-
     while (true) {
         const jsonData = {
             variables: {
@@ -95,31 +88,22 @@ const queryPids = async () => {
                 }
             }`
         };
-
         const response = await fetch('https://arweave-search.goldsky.com/graphql', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(jsonData)
         });
-
         const result = await response.json();
-
-        // 检查是否有数据
         if (result.data.transactions.edges.length === 0) {
             break;
         }
-
-        // 处理当前页的数据
         for (const info of result.data.transactions.edges) {
-
             for (const tag of info.node.tags) {
                 if (tag.name === 'Name') {
                     pidMap.set(tag.value, info.node.id);
                 }
             }
         }
-
-        // 更新游标为当前页的最后一个节点的游标
         nextCursor = result.data.transactions.edges[result.data.transactions.edges.length - 1].cursor;
     }
 

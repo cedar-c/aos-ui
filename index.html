@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOS-UI</title>
+    <title>Centered Layout with Flexbox</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<script src="script.js"></script>
-<div id="bottomImg">
-    <a href="https://discord.gg/SBU6ArKC" target="_blank"><img
-            src="https://www.pngmart.com/files/22/Discord-Logo-PNG-File.png"></a>
-</div>
-<div id="pre">
-    <h1 id="title">Welcome to AOS-UI</h1>
-<!--     <div id="notification">
-        ArConnect is not installed. Please install it from <a href="https://arconnect.io" target='_blank'>here</a>.
-    </div> -->
-    <div id="content">
-        <iframe id="aos" frameborder="0" allowfullscreen src="https://sh_ao.g8way.io/" scrolling="no"></iframe>
+<div class="container">
+    <div id="connectButtonContainer">
+        <button id="arConncet">ArConnect</button>
     </div>
-<!--     <div id="buttonContainer">
-        <button id="connectButton">Click to connect to Arconnect</button>
-    </div> -->
+    <!-- 上部分：输入框（pid）和按钮（connect） -->
+    <div class="top-section input-container">
+        <select id="pidSelect" >create a new process</select>
+        <input type="text" id="pid" placeholder="Enter Process" class="long-input">
+        <button id="connect">Connect</button>
+    </div>
+
+    <!-- 中部分：显示区域 -->
+    <div id="contentDiv" class="middle-section display-container">
+        <!-- 内容将动态生成并添加到这里 -->
+    </div>
+
+    <!-- 下部分：输入框（msg）和按钮（send） -->
+    <div class="bottom-section input-container">
+        <input type="text" id="msg" placeholder="Enter Message" class="long-input">
+        <button type="button" id="send">Send</button>
+    </div>
 </div>
+
+<div id="overlay" style="display:none;">
+    <div id="overlay-content">
+        <textarea id="large-input" placeholder="Enter lua here..." rows="20"></textarea>
+        <div id="overlay-buttons">
+            <button id="back">Back</button>
+            <button id="sendLua">Send</button>
+        </div>
+    </div>
+</div>
+<script src="./dist/bundle.js"></script>
 
 </body>
 </html>

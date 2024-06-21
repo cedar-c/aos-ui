@@ -1,80 +1,178 @@
-body, #pre {
-    background-color: #F3F5FA;
-    color: #333;
-    font-family: 'Arial', sans-serif;
+body, html {
     margin: 0;
     padding: 0;
-}
-
-#title, #notification {
-    width: 80%;
-    max-width: 1200px;
-    margin: 30px auto 30px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-
-#notification {
-    font-size: 25px;
-    margin: auto;
-    background-color: #f44336;
-    display: none;
-}
-
-
-#content {
-    width: 67%;
-    height: 70vh;
-    margin: auto;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    position: relative; 
-}
-
-#content iframe {
-    width: 100%;
     height: 100%;
-    border: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-#bottomImg {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    z-index: 1000;
+.container {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 轻微的外围阴影 */
+    border-radius: 12px; /* 圆角边框 */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start; /* 子元素在顶部开始排列 */
 }
 
-#bottomImg img {
-    width: 50px;
-    height: auto;
+.top-section {
+    margin-top: 80px; /* 增加与顶部的距离 */
+    width: 60%; /* 可以根据需要调整宽度 */
+    display: flex;
+    border-radius: 12px; /* 圆角边框 */
+    background-color: #F5F5F5; /* 柔和的背景色 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 轻微的阴影 */
+    justify-content: space-between;
+    padding: 20px; /* 给输入框周围的空间 */
 }
 
-#buttonContainer {
-    position: relative; /* Relative positioning for positioning within #pre */
-    width: 75%; /* Make the width consistent with #content */
-    max-width: 1200px;
-    margin: 10px auto; /* Center it horizontally */
-    text-align: right; /* Align the button to the right */
+.bottom-section {
+    background-color: #BEBEBE; /* 柔和的背景色 */
 }
 
-#buttonContainer button {
-    padding: 20px 40px;
-    background-color: #f44336;
-    color: black;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.input-container {
+    width: 60%;
+    display: flex;
+    border-radius: 12px; /* 圆角边框 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 轻微的阴影 */
+    justify-content: space-between;
+    padding: 20px; /* 给输入框周围的空间 */
+}
+
+.input-container > input,
+.input-container > select,
+.input-container > button {
+    padding: 10px;
+    border-radius: 6px; /* 子元素圆角 */
+    transition: background-color 0.3s, transform 0.2s; /* 悬停效果过渡 */
+    font-weight: 500; /* 字体加粗 */
+    color: #333; /* 文字颜色 */
+}
+
+.long-input {
+    flex-grow: 1;
+    margin-right: 5px; /* 给长输入框和其他元素之间留些空间 */
+    background-color: white; /* 输入框背景色 */
+}
+
+/* 按钮悬停效果 */
+.input-container > button:hover {
+    /*background-color: #007bff; !* 按钮悬停颜色 *!*/
+    color: white;
+    transform: scale(1.05); /* 轻微放大 */
     cursor: pointer;
 }
 
+.middle-section {
+    width: 62%;
+    height: 60vh;
+    max-height: 60vh;
+    border: 1px solid #000;
+    overflow-y: auto;
+    margin: 20px 0; /* 中间部分与其他部分的间隔 */
+    background-color: black; /* 背景色 */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.display-item {
+    /* 移除外边距 */
+    margin-bottom: 0;
+    /* 如果你想要元素之间没有间隔，可以设置padding为0 */
+    padding: 10px;
+    /* 移除边框，如果你不需要显示边框的话 */
+    border: none;
+    /* 确保背景色和其他样式符合你的需求 */
+    background-color: black;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container > .input-container, .middle-section {
+        width: 90%;
+    }
+}
+
+#connectButtonContainer {
+    position: fixed; /* 固定位置 */
+    top: 20px; /* 距离顶部20px */
+    right: 20px; /* 距离右侧20px */
+    width: 150px;
+    height: 40px;
+    z-index: 1000; /* 确保在页面最上层 */
+    border-radius: 10px; /* 边框圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+#connectButtonContainer button {
+    width: 100%; /* 宽度为100%，覆盖整个视窗宽度 */
+    height: 100%; /* 高度为视窗高度的60% */
+    font-size: 20px;
+    border-radius: 10px; /* 边框圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    background: aquamarine;
+}
+
+#pidSelect {
+    width: 150px; /* 根据需要调整宽度 */
+    padding: 10px;
+    margin-right: 5px; /* 与输入框保持一定间距 */
+}
+
+
+#overlay {
+    position: fixed; /* 固定定位，覆盖整个视窗 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽度为100%，覆盖整个视窗宽度 */
+    height: 100%; /* 高度为视窗高度的60% */
+    background-color: rgba(0, 0, 0, 0.5); /* 背景颜色，可以是半透明或其他颜色 */
+    z-index: 2000; /* 确保覆盖层在页面最上层 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#overlay-content {
+    width: 50%; /* 覆盖层内容的宽度，根据需要调整 */
+    height: 50%;
+    /* 其他样式根据需要调整 */
+    background-color: white; /* 背景颜色为白色 */
+    border-radius: 10px; /* 边框圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    padding: 20px; /* 内边距 */
+    /* 如果需要内部元素垂直和水平居中，可以添加以下样式 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#large-input {
+    width: 80%; /* 占父元素宽度的80% */
+    height: 80%; /* 占自身宽度的80%作为高度，这里可以根据实际需要调整 */
+    margin-bottom: 10px; /* 输入框和按钮之间的间隔 */
+    background-color: #cccccc; /* 灰色背景 */
+    padding: 10px; /* 输入框内边距 */
+    font-size: 16px; /* 字体大小 */
+    border: none; /* 无边框 */
+    border-radius: 5px; /* 输入框边框圆角 */
+}
+
+#overlay-buttons button {
+    background-color: blue; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    border: none; /* 无边框 */
+    padding: 10px 20px; /* 按钮内边距 */
+    margin: 0 5px; /* 按钮之间的间隔 */
+    border-radius: 5px; /* 按钮边框圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手形图标 */
+    font-size: 16px; /* 字体大小 */
+}
+
+/* 响应式设计，如果需要 */
+@media (max-width: 768px) {
+    #large-input {
+        width: 90%; /* 调整宽度以适应小屏幕 */
+    }
+}
